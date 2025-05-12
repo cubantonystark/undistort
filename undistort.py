@@ -14,13 +14,11 @@ format = 'circular'
 fov = 180
 pfov = 120
 
-# Function to process one image side
 def process_side(image_half, output_path):
     cv2.imwrite(output_path, image_half)
     obj = Defisheye(output_path, dtype=dtype, format=format, fov=fov, pfov=pfov)
     obj.convert(outfile=output_path)
 
-# Function to process one image
 def process_image(entry, progress_callback):
     image = cv2.imread(entry)
     if image is None:
@@ -42,10 +40,8 @@ def process_image(entry, progress_callback):
         executor.submit(process_side, left_image, output_left)
         executor.submit(process_side, right_image, output_right)
 
-    # Notify GUI to update progress
     progress_callback()
 
-# GUI setup
 class App:
     def __init__(self, root):
         self.root = root
@@ -101,7 +97,6 @@ class App:
 
         self.status.config(text="Done!")
 
-# Run the GUI
 if __name__ == "__main__":
     root = tk.Tk()
     app = App(root)
