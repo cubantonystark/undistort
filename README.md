@@ -1,2 +1,2 @@
 # undistort
-Undistorting fisheye using defisheye and open cv
+need defisheye and open cv
